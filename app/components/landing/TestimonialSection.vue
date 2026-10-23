@@ -26,17 +26,17 @@
           aria-label="Testimoni pelanggan"
           aria-roledescription="marquee"
         >
-          <div class="testimonial-track flex w-[200%]">
+          <div class="testimonial-track flex w-max">
             <div
               v-for="copy in 2"
               :key="copy"
-              class="flex w-1/2 shrink-0 gap-4 pr-4 md:gap-6 md:pr-6"
+              class="testimonial-set flex w-max shrink-0 gap-4 pr-4 md:gap-6 md:pr-6"
               :aria-hidden="copy === 2 ? 'true' : undefined"
             >
               <article
                 v-for="testimonial in testimonials"
                 :key="testimonial.name"
-                class="flex min-w-0 flex-1 flex-col justify-between rounded-3xl border border-gray-200/80 bg-warm-bg p-5 shadow-xs sm:p-6 lg:p-8"
+                class="flex w-[86vw] shrink-0 flex-col justify-between rounded-3xl border border-gray-200/80 bg-warm-bg p-5 shadow-xs sm:p-6 md:w-[42vw] lg:w-[28vw] lg:p-8 2xl:w-96"
                 role="group"
                 aria-roledescription="slide"
                 :aria-label="`${testimonial.name}, ${testimonial.city}`"
@@ -116,6 +116,10 @@ const testimonials = [
 <style scoped>
 .testimonial-track {
   animation: testimonial-scroll 36s linear infinite;
+}
+
+.testimonial-set {
+  width: max-content;
 }
 
 .testimonial-marquee:hover .testimonial-track,
