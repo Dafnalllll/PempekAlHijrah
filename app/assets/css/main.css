@@ -1,1 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  
+  --color-teal-primary: #15353B;
+  --color-teal-dark: #0E2429;
+  --color-teal-light: #1E4D56;
+  --color-gold-secondary: #D9A34A;
+  --color-gold-light: #F4D084;
+  --color-warm-bg: #FAF8F2;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1EBE5D;
+  --color-charcoal: #262626;
+  --color-muted: #777777;
+  --color-neutral-border: #EAE5D9;
+}
+
+:root {
+  --shadow-soft: 0 20px 45px rgba(21, 53, 59, 0.12);
+  --shadow-card: 0 18px 40px rgba(13, 33, 38, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at top left, rgba(217, 163, 74, 0.16), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(21, 53, 59, 0.08), transparent 30%),
+    var(--color-warm-bg);
+  color: var(--color-charcoal);
+}
+
+body {
+  min-height: 100vh;
+  background: transparent;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+}
+
+::selection {
+  background: rgba(217, 163, 74, 0.45);
+  color: #15353B;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(2deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 163, 74, 0.18); }
+  50% { box-shadow: 0 0 0 14px rgba(217, 163, 74, 0); }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 7s ease-in-out infinite 0.8s;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3.5s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out both;
+}
+
+.hero-shimmer {
+  background: linear-gradient(120deg, rgba(255,255,255,0) 25%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3.2s linear infinite;
+}
+
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.section-card {
+  box-shadow: var(--shadow-card);
+}
+
+.hover-lift {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 40px rgba(21, 53, 59, 0.12);
+}
