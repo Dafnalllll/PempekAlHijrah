@@ -7,6 +7,7 @@ import TestimonialSection from '~/components/landing/TestimonialSection.vue'
 import OrderingSection from '~/components/landing/OrderingSection.vue'
 import ShippingSection from '~/components/landing/ShippingSection.vue'
 import AboutSection from '~/components/landing/AboutSection.vue'
+import FAQSection from '~/components/landing/FAQSection.vue'
 import ClosingCTA from '~/components/landing/ClosingCTA.vue'
 import AppFooter from '~/components/landing/AppFooter.vue'
 
@@ -14,8 +15,8 @@ useHead({
   title: 'Pempek Hijrah',
   meta: [
     { name: 'description', content: 'Nikmati kelezatan pempek frozen ikan tenggiri asli dengan cuko kental khas Palembang. Praktis disajikan di rumah, aman dikirim ke seluruh Indonesia.' },
-    { property: 'og:title', content: 'Pempek Al Hijrah â€” Pempek Frozen Autentik Khas Palembang' }, 
-    { property: 'og:description', content: '100% Ikan Tenggiri Asli â€¢ Cuko Autentik Palembang â€¢ Vacuum Frozen Higienis.' },
+    { property: 'og:title', content: 'Pempek Al Hijrah — Pempek Frozen Autentik Khas Palembang' },
+    { property: 'og:description', content: '100% Ikan Tenggiri Asli • Cuko Autentik Palembang • Vacuum Frozen Higienis.' },
     { property: 'og:type', content: 'website' }
   ],
   link: [
@@ -34,6 +35,7 @@ useHead({
       <ProductSection />
       <OrderingSection />
       <ShippingSection />
+      <FAQSection />
       <ClosingCTA />
       <TestimonialSection />
     </main>

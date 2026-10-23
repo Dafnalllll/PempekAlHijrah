@@ -7,11 +7,14 @@ import {
   Utensils,
   ShoppingBag,
   ClipboardList,
+  ChevronDown,
 } from "lucide-vue-next";
 import { useCart } from "~/composables/useCart";
 
 const { totalItemsCount } = useCart();
 const isMobileMenuOpen = ref(false);
+const isMobileProfilOpen = ref(false);
+const isMobilePanduanOpen = ref(false);
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
@@ -19,6 +22,8 @@ const toggleMobileMenu = () => {
 
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
+  isMobileProfilOpen.value = false;
+  isMobilePanduanOpen.value = false;
 };
 
 const whatsappNumber = "6281234567891";
@@ -42,10 +47,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           </div>
           <div class="flex flex-col">
             <span class="font-serif font-bold text-teal-primary text-lg sm:text-xl tracking-tight">Pempek Al Hijrah</span>
-            <span class="text-[10px] text-[#777777] uppercase tracking-wider font-semibold">Palembang Asli</span>
+            <span class="text-[10px] text-muted uppercase tracking-wider font-semibold">Palembang Asli</span>
           </div>
         </NuxtLink>
 
+        <!-- Desktop Navigation with Sub-menus -->
         <nav
           class="hidden items-center gap-5 text-[15px] font-medium text-charcoal lg:flex lg:gap-6 xl:gap-8"
         >
@@ -55,36 +61,77 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
             >Beranda</NuxtLink
           >
 
-          <a
-            href="/#tentang"
-            class="whitespace-nowrap transition hover:text-teal-primary"
-            >Tentang Kami</a
-          >
-          <a
-            href="/#keunggulan"
-            class="whitespace-nowrap transition hover:text-teal-primary"
-            >Keunggulan</a
-          >
+          <!-- Profil Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1.5 whitespace-nowrap transition hover:text-teal-primary py-2 focus:outline-none"
+            >
+              <span>Profil</span>
+              <ChevronDown class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <div
+              class="absolute top-full left-0 pt-2 w-48 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50"
+            >
+              <div
+                class="rounded-2xl border border-neutral-border bg-warm-bg/95 p-2 shadow-xl backdrop-blur-xl flex flex-col gap-1"
+              >
+                <a
+                  href="/#tentang"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Tentang Kami</a
+                >
+                <a
+                  href="/#keunggulan"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Keunggulan</a
+                >
+                <a
+                  href="/#testimoni"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Testimoni</a
+                >
+              </div>
+            </div>
+          </div>
+
           <a
             href="/#katalog"
             class="whitespace-nowrap transition hover:text-teal-primary"
             >Katalog Paket</a
           >
-          <a
-            href="/#pemesanan"
-            class="whitespace-nowrap transition hover:text-teal-primary"
-            >Cara Pemesanan</a
-          >
-          <a
-            href="/#pengiriman"
-            class="whitespace-nowrap transition hover:text-teal-primary"
-            >Pengiriman</a
-          >
-          <a
-            href="/#testimoni"
-            class="whitespace-nowrap transition hover:text-teal-primary"
-            >Testimoni</a
-          >
+
+          <!-- Panduan & Layanan Dropdown -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1.5 whitespace-nowrap transition hover:text-teal-primary py-2 focus:outline-none"
+            >
+              <span>Panduan</span>
+              <ChevronDown class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <div
+              class="absolute top-full left-0 pt-2 w-52 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50"
+            >
+              <div
+                class="rounded-2xl border border-neutral-border bg-warm-bg/95 p-2 shadow-xl backdrop-blur-xl flex flex-col gap-1"
+              >
+                <a
+                  href="/#pemesanan"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Cara Pemesanan</a
+                >
+                <a
+                  href="/#pengiriman"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Pengiriman</a
+                >
+                <a
+                  href="/#faq"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Tanya Jawab (FAQ)</a
+                >
+              </div>
+            </div>
+          </div>
         </nav>
 
         <div class="hidden items-center gap-3 md:flex">
@@ -176,7 +223,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       >
         <div
           v-if="isMobileMenuOpen"
-          class="absolute left-3 right-3 sm:left-6 sm:right-6 mt-3 rounded-[28px] border border-neutral-border bg-warm-bg/95 p-6 shadow-2xl backdrop-blur-xl md:hidden z-50 origin-top"
+          class="absolute left-3 right-3 sm:left-6 sm:right-6 mt-3 rounded-[28px] border border-neutral-border bg-warm-bg/95 p-6 shadow-2xl backdrop-blur-xl md:hidden z-50 origin-top max-h-[80vh] overflow-y-auto"
         >
           <div class="flex items-center justify-between pb-4 border-b border-neutral-border">
             <span class="font-serif font-bold text-teal-primary text-base">Menu Navigasi</span>
@@ -191,20 +238,38 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
             >
               <span>Beranda</span>
             </NuxtLink>
-            <a
-              href="/#tentang"
-              @click="closeMobileMenu"
-              class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary"
-            >
-              <span>Tentang Kami</span>
-            </a>
-            <a
-              href="/#keunggulan"
-              @click="closeMobileMenu"
-              class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary"
-            >
-              <span>Keunggulan</span>
-            </a>
+
+            <!-- Mobile Profil Accordion -->
+            <div class="flex flex-col">
+              <button
+                @click="isMobileProfilOpen = !isMobileProfilOpen"
+                class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary w-full text-left"
+              >
+                <span>Profil</span>
+                <ChevronDown :class="['h-4 w-4 transition-transform duration-200', isMobileProfilOpen ? 'rotate-180' : '']" />
+              </button>
+              <div v-if="isMobileProfilOpen" class="flex flex-col pl-4 pt-1 gap-1 border-l-2 border-teal-primary/20 ml-3 my-1">
+                <a
+                  href="/#tentang"
+                  @click="closeMobileMenu"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Tentang Kami</a
+                >
+                <a
+                  href="/#keunggulan"
+                  @click="closeMobileMenu"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Keunggulan</a
+                >
+                <a
+                  href="/#testimoni"
+                  @click="closeMobileMenu"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Testimoni</a
+                >
+              </div>
+            </div>
+
             <a
               href="/#katalog"
               @click="closeMobileMenu"
@@ -212,27 +277,38 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
             >
               <span>Katalog Paket</span>
             </a>
-            <a
-              href="/#pemesanan"
-              @click="closeMobileMenu"
-              class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary"
-            >
-              <span>Cara Pemesanan</span>
-            </a>
-            <a
-              href="/#pengiriman"
-              @click="closeMobileMenu"
-              class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary"
-            >
-              <span>Pengiriman</span>
-            </a>
-            <a
-              href="/#testimoni"
-              @click="closeMobileMenu"
-              class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary"
-            >
-              <span>Testimoni</span>
-            </a>
+
+            <!-- Mobile Panduan Accordion -->
+            <div class="flex flex-col">
+              <button
+                @click="isMobilePanduanOpen = !isMobilePanduanOpen"
+                class="flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-teal-primary/10 hover:text-teal-primary w-full text-left"
+              >
+                <span>Panduan & FAQ</span>
+                <ChevronDown :class="['h-4 w-4 transition-transform duration-200', isMobilePanduanOpen ? 'rotate-180' : '']" />
+              </button>
+              <div v-if="isMobilePanduanOpen" class="flex flex-col pl-4 pt-1 gap-1 border-l-2 border-teal-primary/20 ml-3 my-1">
+                <a
+                  href="/#pemesanan"
+                  @click="closeMobileMenu"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Cara Pemesanan</a
+                >
+                <a
+                  href="/#pengiriman"
+                  @click="closeMobileMenu"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Pengiriman</a
+                >
+                <a
+                  href="/#faq"
+                  @click="closeMobileMenu"
+                  class="rounded-xl px-3 py-2 text-sm transition hover:bg-teal-primary/10 hover:text-teal-primary"
+                  >Tanya Jawab (FAQ)</a
+                >
+              </div>
+            </div>
+
             <NuxtLink
               to="/pesanan-saya"
               @click="closeMobileMenu"
